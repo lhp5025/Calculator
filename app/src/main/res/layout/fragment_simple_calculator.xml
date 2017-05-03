@@ -1,216 +1,264 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.lukeponiatowski.calculator.SimpleCalculator">
+    android:columnCount="4"
+    android:orientation="horizontal"
+    android:rowCount="5"
+    tools:context="com.lukeponiatowski.calculator.SimpleCalculator"
+    tools:layout_editor_absoluteX="8dp"
+    tools:layout_editor_absoluteY="8dp">
 
-    <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:id="@+id/clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="Clear"
+        android:text="C"
+        android:textSize="48sp" />
 
-    <GridLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:columnCount="4"
-        android:layoutDirection="ltr"
-        android:orientation="horizontal"
-        android:rowCount="6"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
+    <Button
+        android:id="@+id/backspace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:foreground="@android:drawable/ic_input_delete"
+        android:foregroundGravity="center"
+        android:foregroundTint="@color/black"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="Backspace"
+        android:text=""
+        android:textSize="48sp" />
 
-        <HorizontalScrollView
-            android:id="@+id/inOutScroll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_columnSpan="4"
-            android:layout_row="0"
-            android:layout_rowWeight="1">
+    <Button
+        android:id="@+id/exponent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="onClickInput"
+        android:text="^"
+        android:textSize="48sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="right"
-                android:orientation="vertical">
+    <Button
+        android:id="@+id/divide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="onClickInput"
+        android:text="/"
+        android:textSize="48sp" />
 
-                <TextView
-                    android:id="@+id/simpleIO"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="right|center_vertical"
-                    android:lines="1"
-                    android:maxLines="1"
-                    android:scrollIndicators="bottom"
-                    android:textAlignment="textEnd"
-                    android:textIsSelectable="true"
-                    android:textSize="60dp"
-                    tools:text="[input/output]" />
-            </LinearLayout>
-        </HorizontalScrollView>
+    <Button
+        android:id="@+id/seven"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="onClickInput"
+        android:text="7"
+        android:textSize="48sp" />
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:text="C" />
+    <Button
+        android:id="@+id/eight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="onClickInput"
+        android:text="8"
+        android:textSize="48sp" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:text="S" />
+    <Button
+        android:id="@+id/nine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="onClickInput"
+        android:text="9"
+        android:textSize="48sp" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:text="-" />
+    <Button
+        android:id="@+id/multiply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="onClickInput"
+        android:text="*"
+        android:textSize="48sp" />
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:text="/" />
+    <Button
+        android:id="@+id/four"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="onClickInput"
+        android:text="4"
+        android:textSize="48sp" />
 
-        <Button
-            android:id="@+id/seven"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:onClick="onClickNumberInput"
-            android:text="7" />
+    <Button
+        android:id="@+id/five"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="onClickInput"
+        android:text="5"
+        android:textSize="48sp" />
 
-        <Button
-            android:id="@+id/eight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:onClick="onClickNumberInput"
-            android:text="8" />
+    <Button
+        android:id="@+id/six"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="onClickInput"
+        android:text="6"
+        android:textSize="48sp" />
 
-        <Button
-            android:id="@+id/nine"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:onClick="onClickNumberInput"
-            android:text="9" />
+    <Button
+        android:id="@+id/subtract"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="onClickInput"
+        android:text="-"
+        android:textSize="48sp" />
 
-        <Button
-            android:id="@+id/button16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:text="*" />
+    <Button
+        android:id="@+id/one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="onClickInput"
+        android:text="1"
+        android:textSize="48sp" />
 
-        <Button
-            android:id="@+id/four"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:onClick="onClickNumberInput"
-            android:text="4" />
+    <Button
+        android:id="@+id/two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="onClickInput"
+        android:text="2"
+        android:textSize="48sp" />
 
-        <Button
-            android:id="@+id/five"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:onClick="onClickNumberInput"
-            android:text="5" />
+    <Button
+        android:id="@+id/three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="onClickInput"
+        android:text="3"
+        android:textSize="48sp" />
 
-        <Button
-            android:id="@+id/six"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:onClick="onClickNumberInput"
-            android:text="6" />
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="onClickInput"
+        android:text="+"
+        android:textSize="48sp" />
 
-        <Button
-            android:id="@+id/button20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:text="-" />
+    <Button
+        android:id="@+id/point"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="onClickInput"
+        android:text="."
+        android:textSize="48sp" />
 
-        <Button
-            android:id="@+id/one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:onClick="onClickNumberInput"
-            android:text="1" />
+    <Button
+        android:id="@+id/zero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="onClickInput"
+        android:text="0"
+        android:textSize="48sp" />
 
-        <Button
-            android:id="@+id/two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:onClick="onClickNumberInput"
-            android:text="2" />
+    <Button
+        android:id="@+id/calculate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        android:background="@drawable/value_button"
+        android:minHeight="0dp"
+        android:minWidth="0dp"
+        android:onClick="Calculate"
+        android:text="="
+        android:textSize="48sp" />
 
-        <Button
-            android:id="@+id/three"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:onClick="onClickNumberInput"
-            android:text="3" />
-
-        <Button
-            android:id="@+id/button24"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:text="+" />
-
-        <Button
-            android:id="@+id/point"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:onClick="onClickNumberInput"
-            android:text="." />
-
-        <Button
-            android:id="@+id/zero"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:onClick="onClickNumberInput"
-            android:text="0" />
-
-        <Button
-            android:id="@+id/button31"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_columnSpan="2"
-            android:layout_columnWeight="1"
-            android:layout_rowWeight="1"
-            android:text="=" />
-
-    </GridLayout>
-
-</FrameLayout>
+</GridLayout>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/moreCalculators"
+        android:icon="@drawable/ic_extension_black_24dp"
+        android:onClick="openMoreCalc"
+        android:showAsAction="always"
+        android:title="MORE"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/settings"
+        android:title="SETTINGS"
+        app:showAsAction="never"
+        android:showAsAction="never" />
+
+</menu>

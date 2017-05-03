@@ -12,17 +12,19 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SimpleCalculator extends Fragment {
+public class AdvancedCalculator extends Fragment {
 
-    public SimpleCalculator() {
+
+    public AdvancedCalculator() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_simple_calculator, container, false);
+        return inflater.inflate(R.layout.fragment_advanced_calculator, container, false);
     }
 
     @Override
@@ -31,4 +33,5 @@ public class SimpleCalculator extends Fragment {
 
 
     }
+
 }
