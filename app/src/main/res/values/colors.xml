@@ -13,4 +13,5 @@
     <color name="orange">#ffce8d</color>
     <color name="lightGray">#969696</color>
     <color name="light_green">#edffd7</color>
+    <color name="alpha">#00ffffff</color>
 </resources>

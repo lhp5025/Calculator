@@ -1,13 +1,10 @@
 package com.lukeponiatowski.calculator;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 
-/**
- * Created by Luke on 4/30/2017.
- */
-
+/*
+    Expression -  class for parsing and evaluating expression strings
+*/
 public class Expression {
     // Constants for operators, with higher values being higher order
     public final int END_OF_EXPRESSION = 0;
@@ -26,18 +23,22 @@ public class Expression {
     public final static int ACOS = 109;
     public final static int ATAN = 110;
     public final static int LN = 111;
+    public final static int LOG = 112;
     public final static int FACTORIAL = 999;
     public final static int EXPONENTIAL = 1000;
 
     // Class Data Members
     protected ArrayList<Expression> ExpressionList;
-    protected int Operator;
+    protected int Operator; //Operator following this expression
+    protected Number Value = null; //Value of this expression, null since expression may have sub-expressions
 
+    //Public defalut constructor
     public Expression() {
         ExpressionList = new ArrayList();
-        Operator = END_OF_EXPRESSION;
+        Operator = END_OF_EXPRESSION; //Default operatore is END_OF_EXPRESSION, because the expression has no parents
     }
 
+    //Constructor for expression that is used as a sub-expression (hence private)
     private Expression(String exp, int operator) {
         ExpressionList = new ArrayList();
         parseString(exp);
@@ -48,6 +49,9 @@ public class Expression {
     public boolean parseString(String input) {
         boolean toReturn = true;
         try {
+            input = input.replace("e", Math.E + "");
+            input = input.replace("\u03C0", Math.PI + "");
+            input = input.replace("E", "*10^");
             // Read in till on operator is found
             String numberBuffer = "";
             String functionBuffer = "";
@@ -69,12 +73,17 @@ public class Expression {
                         }
                         end = j;
                     }
-                    i = end + 2;
+                    i = end + 1;
+
+                    int operator = 0;
+                    if (end+1 < input.length()){
+                        operator = determineOperator(input.charAt(end+1));
+                    }
 
                     if (functionBuffer.length() != 0) {
-                        ExpressionList.add(new FunctionValue(determineFunction(functionBuffer) ,subExpressionBuffer, determineOperator(input.charAt(end+1)) ) );
+                        ExpressionList.add(new FunctionValue(determineFunction(functionBuffer) ,subExpressionBuffer, operator ) );
                     } else {
-                        ExpressionList.add(new Expression(subExpressionBuffer, determineOperator(input.charAt(end+1)) ) );
+                        ExpressionList.add(new Expression(subExpressionBuffer, operator ) );
                     }
 
                 } else if ( determineOperator(input.charAt(i)) > 0 ) {
@@ -95,9 +104,13 @@ public class Expression {
                     functionBuffer += input.charAt(i);
                 }
             }
-            ExpressionList.add(new ValueOperand( Double.parseDouble(numberBuffer), END_OF_EXPRESSION) );
+            if (numberBuffer.length() != 0){
+                ExpressionList.add(new ValueOperand( Double.parseDouble(numberBuffer), END_OF_EXPRESSION) );
+            }
+
         } catch (Exception e) {
-            Log.e("Calculator", e.getMessage() );
+            //Log.e("Calculator",e.getStackTrace(). );
+            e.printStackTrace();
             toReturn = false;
         }
 
@@ -106,23 +119,34 @@ public class Expression {
 
     // Returns the values of this expression
     public Number getValue() {
-        // While the expression has sub expression to be computed
-        while (ExpressionList.size() > 1) {
-            // Find operator with the highest value
-            int comuteIndex = 0;
-            int comuteIndexOpValue = 0;
-            for (int i = 0; i < ExpressionList.size(); i++) {
-                if (ExpressionList.get(i).getOperator() > comuteIndexOpValue){
-                    comuteIndexOpValue= i;
-                    comuteIndex = i;
-                }
-            }
-            ExpressionList.get(comuteIndex + 1).setValue(computeValues(ExpressionList.get(comuteIndex).getValue(), ExpressionList.get(comuteIndex + 1).getValue(), ExpressionList.get(comuteIndex).getOperator() ));
-            ExpressionList.remove(comuteIndex);
-            // Compute operator value pair
-        }
+        Number toReturn = 0;
+        if (ExpressionList.size() > 0){
+            toReturn = ExpressionList.get(0).getValue();
+            //If there are sub-expressions
+            if (Value == null){
+                // While the expression has sub expression to be computed
+                while (ExpressionList.size() > 1) {
+                    // Find operator with the highest value
+                    int comuteIndex = 0;
+                    int comuteIndexOpValue = 0;
+                    for (int i = 0; i < ExpressionList.size(); i++) {
+                        if (ExpressionList.get(i).getOperator() > comuteIndexOpValue){
+                            comuteIndexOpValue= ExpressionList.get(i).getOperator();
+                            comuteIndex = i;
+                        }
+                    }
+                    //Amend the sub-expressions
+                    ExpressionList.get(comuteIndex + 1).setValue(computeValues(ExpressionList.get(comuteIndex).getValue(), ExpressionList.get(comuteIndex + 1).getValue(), ExpressionList.get(comuteIndex).getOperator() ));
+                    ExpressionList.remove(comuteIndex); //Remove current expression
 
-        return ExpressionList.get(0).getValue();
+                }
+                toReturn = ExpressionList.get(0).getValue(); //Return the leading, and only sub-expression value
+            } else {
+                //If ther is a value, it overrides sub-exprssion
+                toReturn = Value;
+            }
+        }
+        return toReturn;
     }
 
     // Returns the operator following this expression
@@ -130,15 +154,17 @@ public class Expression {
         return Operator;
     }
 
+    // Sets the value of the expression
     protected void setValue(Number n) {
-        // Do nothing TODO
+        Value = n;
     }
 
+    // Determines if a char is a number, or part of
     private boolean isCharNumber(char c){
         boolean toReturn = false;
 
         // 0 to 9 or .
-        if (( (int)c >= 48  && (int)c <=57) || (int)c == 49) {
+        if (( (int)c >= 48  && (int)c <=57) || c == '.') {
             toReturn = true;
         }
 
@@ -171,6 +197,7 @@ public class Expression {
         return  toReturn;
     }
 
+    // Computes the value of a sub-function
     private int determineFunction(String s) {
         int toReturn = 0;
 
@@ -205,6 +232,9 @@ public class Expression {
             case "ln":
                 toReturn = LN;
                 break;
+            case "log":
+                toReturn = LOG;
+                break;
         }
 
         return  toReturn;
@@ -213,8 +243,6 @@ public class Expression {
     // Computes the value of a sub expression
     private Number computeValues(Number value1, Number value2, int operator) {
         Number toReturn = 0;
-
-
         switch (operator) {
             case END_OF_EXPRESSION:
                 toReturn = value1;
@@ -242,8 +270,6 @@ public class Expression {
 
     // Inner class for value-operator pairs
     private class ValueOperand extends Expression {
-        private Number Value;
-
         public ValueOperand(Number value, int operator) {
             this.ExpressionList = null;
             this.Value = value;
@@ -261,6 +287,7 @@ public class Expression {
         }
     }
 
+    // Inner class for function sub-expressions
     private class FunctionValue extends  Expression {
         private final int Funct;
         public FunctionValue(int funct, String innerExpression, int operator) {
@@ -272,13 +299,13 @@ public class Expression {
 
         @Override
         public Number getValue() {
-            Number toReturn = getValue();
+            Number toReturn = super.getValue();
             switch (Funct){
                 case SIN:
                     toReturn = Math.sin(toReturn.doubleValue());
                     break;
                 case COS:
-                    toReturn = Math.cos(toReturn.doubleValue());
+                    toReturn = Math.cos( toReturn.doubleValue());
                     break;
                 case TAN:
                     toReturn = Math.tan(toReturn.doubleValue());
@@ -303,6 +330,9 @@ public class Expression {
                     break;
                 case LN:
                     toReturn = Math.atan(toReturn.doubleValue());
+                    break;
+                case LOG:
+                    toReturn = Math.log(toReturn.doubleValue());
                     break;
             }
             return toReturn;

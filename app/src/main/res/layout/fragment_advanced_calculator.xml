@@ -44,7 +44,7 @@
         android:textSize="24dp" />
 
     <Button
-        android:id="@+id/variable"
+        android:id="@+id/var"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
@@ -62,7 +62,7 @@
         android:textSize="24dp" />
 
     <Button
-        android:id="@+id/seven"
+        android:id="@+id/plot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
@@ -76,7 +76,7 @@
         android:maxWidth="16dp"
         android:minHeight="0dp"
         android:minWidth="0dp"
-        android:onClick="onClickInput"
+        android:onClick="Plot"
         android:textSize="24dp" />
 
     <Button
@@ -125,13 +125,14 @@
         android:background="@drawable/value_button"
         android:backgroundTint="@color/white"
         android:backgroundTintMode="multiply"
+        android:elevation="20dp"
         android:foreground="@drawable/ic_unarchive_black_24dp"
         android:foregroundGravity="center"
         android:maxLines="1"
         android:maxWidth="16dp"
         android:minHeight="0dp"
         android:minWidth="0dp"
-        android:onClick="onClickInput"
+        android:onClick="Shift"
         android:textSize="24dp" />
 
     <Button
@@ -354,7 +355,7 @@
         android:textSize="24dp" />
 
     <Button
-        android:id="@+id/minus"
+        android:id="@+id/subtract"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
@@ -415,7 +416,7 @@
         android:maxWidth="16dp"
         android:minHeight="0dp"
         android:minWidth="0dp"
-        android:onClick="Calculate"
+        android:onClick="onClickInput"
         android:text="6"
         android:textSize="24dp" />
 
@@ -432,12 +433,12 @@
         android:maxWidth="16dp"
         android:minHeight="0dp"
         android:minWidth="0dp"
-        android:onClick="Clear"
+        android:onClick="onClickInput"
         android:text="cos"
         android:textSize="24dp" />
 
     <Button
-        android:id="@+id/plus"
+        android:id="@+id/add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
@@ -451,7 +452,7 @@
         android:maxWidth="16dp"
         android:minHeight="0dp"
         android:minWidth="0dp"
-        android:onClick="Backspace"
+        android:onClick="onClickInput"
         android:text="+"
         android:textSize="24dp" />
 

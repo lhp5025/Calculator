@@ -4,14 +4,14 @@
     <item
         android:id="@+id/moreCalculators"
         android:icon="@drawable/ic_extension_black_24dp"
-        android:onClick="openMoreCalc"
         android:showAsAction="always"
         android:title="MORE"
         app:showAsAction="always" />
 
-    <item android:id="@+id/settings"
-        android:title="SETTINGS"
-        app:showAsAction="never"
-        android:showAsAction="never" />
+    <item
+        android:id="@+id/econ1"
+        android:onClick="OpenEconomic1"
+        android:title="Economic"
+        app:showAsAction="never" />
 
 </menu>

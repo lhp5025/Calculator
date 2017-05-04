@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="myStyles.css">
+
+    <script>
+
+    function PV(C,I,N){
+        return C / Math.pow(1+I,N);
+    }
+
+    function calcPV(){
+
+        document.getElementById("pvOut").innerHTML = "$ " + PV(document.getElementById("pvC").value,document.getElementById("pvI").value/100,document.getElementById("pvN").value);
+    }
+
+    function FV(C,I,N){
+        return  C * Math.pow(1+I, N) ;
+    }
+
+    function calcFV(){
+
+        document.getElementById("fvOut").innerHTML = "$ " + FV(document.getElementById("fvC").value,document.getElementById("fvI").value/100,document.getElementById("fvN").value);
+    }
+
+
+    </script>
+
+</head>
+
+<body>
+<div>
+    <h2>Future Value</h2>
+    <label>Present Value<input type="number"id="fvC"></label>
+    <br>
+    <label>Rate(%)<input type="number" id="fvI"></label>
+    <br>
+    <label>Periods<input type="number" id="fvN"></label>
+    <br>
+    <button onclick="calcFV()">Calculate</button>
+    <h3 id="fvOut"></h3>
+</div>
+<hr>
+<div>
+    <h2>Present Value</h2>
+    <label>Future Value<input type="number"id="pvC"></label>
+    <br>
+    <label>Rate(%)<input type="number" id="pvI"></label>
+    <br>
+    <label>Periods<input type="number" id="pvN"></label>
+    <br>
+    <button onclick="calcPV()">Calculate</button>
+    <h3 id="pvOut"></h3>
+</div>
+<hr>
+</body>
+</html>
