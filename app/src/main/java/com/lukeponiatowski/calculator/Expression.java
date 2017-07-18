@@ -24,8 +24,9 @@ public class Expression {
     public final static int ATAN = 110;
     public final static int LN = 111;
     public final static int LOG = 112;
-    public final static int FACTORIAL = 999;
+    public final static int SQRT = 113;
     public final static int EXPONENTIAL = 1000;
+    public final static int FACTORIAL = 1100;
 
     // Class Data Members
     protected ArrayList<Expression> ExpressionList;
@@ -78,6 +79,8 @@ public class Expression {
                     int operator = 0;
                     if (end+1 < input.length()){
                         operator = determineOperator(input.charAt(end+1));
+                    } else if (operator == 0){
+                        operator = MULTIPLY;
                     }
 
                     if (functionBuffer.length() != 0) {
@@ -235,6 +238,9 @@ public class Expression {
             case "log":
                 toReturn = LOG;
                 break;
+            case "\u221A":
+                toReturn = SQRT;
+                break;
         }
 
         return  toReturn;
@@ -334,9 +340,13 @@ public class Expression {
                 case LOG:
                     toReturn = Math.log(toReturn.doubleValue());
                     break;
+                case SQRT:
+                    toReturn = Math.sqrt(toReturn.doubleValue());
+                    break;
             }
             return toReturn;
         }
 
     }
+
 }

@@ -25,6 +25,7 @@
         android:minWidth="0dp"
         android:onClick="Clear"
         android:text="C"
+        android:layout_columnSpan="2"
         android:textSize="24dp" />
 
     <Button
@@ -43,7 +44,6 @@
         android:minWidth="0dp"
         android:onClick="Shift"
         android:text="Sh"
-        android:layout_columnSpan="2"
         android:textSize="24dp" />
 
     <Button

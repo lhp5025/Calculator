@@ -20,7 +20,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".ChildActivity" />
-        <activity android:name=".ActivityPlot" />
         <activity android:name=".Economic1"  android:configChanges="keyboardHidden|orientation|screenSize" ></activity>
     </application>
 

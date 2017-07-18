@@ -56,6 +56,11 @@ public class History extends Fragment {
 
     //Add expression string and solution to internal ArrayList
     public void PushExpression(String exp, String sol){
+        for (int i = 0; i < historyArray.size(); i++) {
+            if(historyArray.get(i).Expression.equals(exp)){
+                historyArray.remove(i);
+            }
+        }
         historyArray.add(0, new ExpressionSolution(exp, sol));
     }
 

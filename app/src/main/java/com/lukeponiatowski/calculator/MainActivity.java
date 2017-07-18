@@ -148,11 +148,8 @@ public class MainActivity extends FragmentActivity {
             case R.id.r_paren:
                 textToAdd = ")";
                 break;
-            case R.id.var:
-                textToAdd = "n";
-                break;
             case R.id.sroot:
-                textToAdd = "^(1/2)";
+                textToAdd = "\u221A" + "(";
                 break;
             case R.id.pi:
                 textToAdd = "\u03C0";
@@ -216,13 +213,13 @@ public class MainActivity extends FragmentActivity {
             shiftEnabled = false;
             //-> make trig int std forms
             ((Button)findViewById(R.id.sin)).setText("sin");
-            ((Button)findViewById(R.id.cos)).setText("tan");
+            ((Button)findViewById(R.id.cos)).setText("cos");
             ((Button)findViewById(R.id.tan)).setText("tan");
         } else {
             shiftEnabled = true;
             //-> make trig int arc forms
             ((Button)findViewById(R.id.sin)).setText("asin");
-            ((Button)findViewById(R.id.cos)).setText("atan");
+            ((Button)findViewById(R.id.cos)).setText("acos");
             ((Button)findViewById(R.id.tan)).setText("atan");
         }
     }
@@ -232,12 +229,10 @@ public class MainActivity extends FragmentActivity {
         inputOutputEditText.setText("");
     }
 
-    //On click function for opening (ActivityPlot), with the param of the expression string
-    public void Plot(View v) {
-        String expString = inputOutputEditText.getText().toString();
-        Intent i = new Intent(this, ActivityPlot.class);
-        i.putExtra("EXPRESSION", expString);
-        startActivity(i);
+    //Function for clearing history
+    public void ClearHistory(View v) {
+        pagerAdapter.historyFragment.ClearHistory();
+        pagerAdapter.historyFragment.UpdateView();
     }
 
     //Menu item click functin for opening the (Economic1) Activity
